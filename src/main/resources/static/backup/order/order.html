@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Coffee Order List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.js"></script>
+
+</head>
+<body class="bg-dark">
+
+<div class="container bg-dark text-light">
+    <!-- 헤더 위치 -->
+    <nav class="navbar navbar-expand-lg bg-dark text-light">
+        <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/home/home.html">Coffee Order</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link text-light" aria-current="page" href="/home/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/menu/menu.html">커피메뉴</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/order/order.html">주문내역</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/member/member.html">고객정보</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div id="main" class="container text-align">
+        <div id="search">
+            <p class="h1">[ Coffee Order List <span style="font-size:30px;">&#128722;</span> ]</p>
+            <p class="h3">[ 검색조건 ]</p>
+            <form class="container" name="fm_member" autocomplete="on">
+                <div class="row">
+                    <div class="col-auto">
+                        <label for="inputStartDate" class="col-form-label">시작기간</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="date" class="form-control form-control-sm" placeholder="시작일자" aria-label="시작일자" id="inputStartDate">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputEndDate" class="col-form-label">종료기간</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="date" class="form-control form-control-sm" placeholder="종료일자" aria-label="종료일자" id="inputEndDate">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputMenuName" class="col-form-label">메뉴명</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenuName">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputCustName" class="col-form-label">고객명</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control form-control-sm" placeholder="고객명" aria-label="고객명" id="inputCustName">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-secondary btn-sm" id="buttonSearch">조회</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Chk</th>
+                    <th scope="col">주문번호</th>
+                    <th scope="col">커피No</th>
+                    <th scope="col">메뉴명</th>
+                    <th scope="col">고객ID</th>
+                    <th scope="col">고객명</th>
+                    <th scope="col">주문일자</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!--- 데이타 출력 부분 -->
+                <tr>
+                    <th scope="row">Chk</th>
+                    <td>주문번호</td>
+                    <td>커피No</td>
+                    <td>메뉴명</td>
+                    <td>고객ID</td>
+                    <td>고객명</td>
+                    <td>주문일자</td>
+                </tr>
+                <tr>
+                    <th scope="row">Chk</th>
+                    <td>주문번호</td>
+                    <td>커피No</td>
+                    <td>메뉴명</td>
+                    <td>고객ID</td>
+                    <td>고객명</td>
+                    <td>주문일자</td>
+                </tr>
+                <tr>
+                    <th scope="row">Chk</th>
+                    <td>주문번호</td>
+                    <td>커피No</td>
+                    <td>메뉴명</td>
+                    <td>고객ID</td>
+                    <td>고객명</td>
+                    <td>주문일자</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 푸터 위치 -->
+    <footer class="bg-dark text-light mt-auto">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h1 class="font-weight-light text-capitalize p-3">With Psc</h1>
+            </div>
+          </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
+
+
