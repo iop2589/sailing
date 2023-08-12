@@ -12,118 +12,87 @@
 </head>
 <body class="bg-dark">
 
-<div class="container bg-dark text-light">
-    <!-- 헤더 위치 -->
-    <nav class="navbar navbar-expand-lg bg-dark text-light">
-        <div class="container-fluid">
-        <a class="navbar-brand text-light" href="/home/home">Coffee Order</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="/home/home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="/menu/menu">커피메뉴</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="/order/order">주문내역</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="/member/member">고객정보</a>
-            </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
+  <div class="container bg-dark text-light">
+      <!-- 헤더 위치 -->
+      <th:block th:replace="/common/header :: headerFragement"></th:block>
 
-
-    <div class="container" id="main">
+      <div class="container" id="main">
         <div id="search">
-            <p class="h1">[ Member Info <span style="font-size:30px;">&#128699;</span> ]</p>
-            <p class="h3">[ 검색조건 ]</p>
-            <form class="container" name="fm_member" autocomplete="on">
-                <div class="row">
-                    <div class="col-auto">
-                    <label for="inputStartDate" class="col-form-label">시작기간</label>
-                    </div>
-                    <div class="col-auto">
-                    <input type="date" class="form-control form-control-sm" placeholder="시작일자" aria-label="시작일자" id="inputStartDate">
-                    </div>
-                    <div class="col-auto">
-                    <label for="inputEndDate" class="col-form-label">종료기간</label>
-                    </div>
-                    <div class="col-auto">
-                    <input type="date" class="form-control form-control-sm" placeholder="종료일자" aria-label="종료일자" id="inputEndDate">
-                    </div>
-                    <div class="col-auto">
-                    <label for="inputCustName" class="col-form-label">고객명</label>
-                    </div>
-                    <div class="col-auto">
-                    <input type="text" class="form-control form-control-sm" placeholder="고객명" aria-label="고객명" id="inputCustName">
-                    </div>
-                    <div class="col-auto">
-                    <button type="submit" class="btn btn-secondary btn-sm" id="buttonSearch">조회</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+          <p class="h1">[ Member Info <span style="font-size:30px;">&#128699;</span> ]</p>
+          <p class="h3">[ 검색조건 ]</p>
+          <form class="container" name="fm_member" autocomplete="on">
+            <div class="row">
+              <div class="col-auto">
+                <label for="inputStartDate" class="col-form-label">시작기간</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" class="form-control form-control-sm" placeholder="시작일자" aria-label="시작일자" id="inputStartDate">
+              </div>
+              <div class="col-auto">
+                <label for="inputEndDate" class="col-form-label">종료기간</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" class="form-control form-control-sm" placeholder="종료일자" aria-label="종료일자" id="inputEndDate">
+              </div>
+              <div class="col-auto">
+                <label for="inputCustName" class="col-form-label">고객명</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control form-control-sm" placeholder="고객명" aria-label="고객명" id="inputCustName">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-secondary btn-sm" id="buttonSearch">조회</button>
+              </div>
+            </div>
+          </form>
+      </div>
 
-        <div>
-            <table class="table table-dark">
-                <thead>
-                <tr>
-                    <th scope="col">Chk</th>
-                    <th scope="col">고객ID</th>
-                    <th scope="col">고객명</th>
-                    <th scope="col">이메일</th>
-                    <th scope="col">권한</th>
-                    <th scope="col">등록일</th>
-                </tr>
-                </thead>
-                <tbody id="t_body">
-                <!--- 데이타 출력 부분 -->
-                    <tr>
-                        <th scope="row">Chk</th>
-                        <td>고객ID</td>
-                        <td>고객명</td>
-                        <td>이메일</td>
-                        <td>권한</td>
-                        <td>등록일</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Chk</th>
-                        <td>고객ID</td>
-                        <td>고객명</td>
-                        <td>이메일</td>
-                        <td>권한</td>
-                        <td>등록일</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Chk</th>
-                        <td>고객ID</td>
-                        <td>고객명</td>
-                        <td>이메일</td>
-                        <td>권한</td>
-                        <td>등록일</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+      <div>
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Chk</th>
+              <th scope="col">고객ID</th>
+              <th scope="col">고객명</th>
+              <th scope="col">이메일</th>
+              <th scope="col">권한</th>
+              <th scope="col">등록일</th>
+            </tr>
+          </thead>
+          <tbody id="t_body">
+            <!--- 데이타 출력 부분 -->
+            <tr>
+              <th scope="row">Chk</th>
+              <td>고객ID</td>
+              <td>고객명</td>
+              <td>이메일</td>
+              <td>권한</td>
+              <td>등록일</td>
+            </tr>
+            <tr>
+              <th scope="row">Chk</th>
+              <td>고객ID</td>
+              <td>고객명</td>
+              <td>이메일</td>
+              <td>권한</td>
+              <td>등록일</td>
+            </tr>
+            <tr>
+              <th scope="row">Chk</th>
+              <td>고객ID</td>
+              <td>고객명</td>
+              <td>이메일</td>
+              <td>권한</td>
+              <td>등록일</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
 
     <!-- 푸터 위치 -->
-    <footer class="bg-dark text-light mt-auto">
-        <div class="container">
-        <div class="row">
-            <div class="col">
-            <h1 class="font-weight-light text-capitalize p-3">With Psc</h1>
-            </div>
-        </div>
-        </div>
-    </footer>
+  <th:block th:replace="/common/footer :: footerFragement"></th:block>
+
 </div>
 </body>
 </html>

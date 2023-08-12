@@ -1,0 +1,27 @@
+--- # Configuration Port
+server:
+  port: 8081
+
+--- # Configuration Thymeleaf
+spring:
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html
+    cache: false
+
+--- # Configuration Devtools
+spring:
+  devtools:
+    livereload:
+      enabled: true
+
+--- # Configuration Postgresql
+spring: 
+  datasource:
+    url: jdbc:postgresql://pschome.iptime.org:1033
+    username: 92_psc
+    password: qkqn1221!!
+
+# Configuration mybatis
+# mybatis.mapper-locations=classpath:sqlmap/**/*.xml
+# mybatis.configuration.map-underscore-to-camel-case=true

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Coffee Menu</title>
   <meta charset="utf-8">
@@ -14,31 +14,7 @@
 
 <div class="container bg-dark text-light">
   <!-- 헤더 위치 -->
-  <nav class="navbar navbar-expand-lg bg-dark text-light">
-    <div class="container-fluid">
-      <a class="navbar-brand text-light" href="/home/home">Coffee Order</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="/home/home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/menu/menu">커피메뉴</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/order/order">주문내역</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/member/member">고객정보</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+  <th:block th:replace="/common/header :: headerFragement"></th:block>
 
   <div class="container" id="main">
 
@@ -111,38 +87,14 @@
 
       <tbody id="t_body">
       <!--- 데이타 출력 부분 -->
-        <tr>
+        <tr th:each="prod : ${list}">
           <th scope="row">Chk</th>
-          <td>커피No</td>
-          <td>메뉴명</td>
-          <td>종류</td>
-          <td>가격</td>
-          <td>등록일</td>
-          <td>수정일</td>
-          <td>수정</td>
-          <td>삭제</td>
-        </tr>
-
-        <tr>
-          <th scope="row">Chk</th>
-          <td>커피No</td>
-          <td>메뉴명</td>
-          <td>종류</td>
-          <td>가격</td>
-          <td>등록일</td>
-          <td>수정일</td>
-          <td>수정</td>
-          <td>삭제</td>
-        </tr>
-
-        <tr>
-          <th scope="row">Chk</th>
-          <td>커피No</td>
-          <td>메뉴명</td>
-          <td>종류</td>
-          <td>가격</td>
-          <td>등록일</td>
-          <td>수정일</td>
+          <td th:text="${prod.get('no')}">커피No</td>
+          <td th:text="${prod.get('name')}">메뉴명</td>
+          <td th:text="${prod.get('kind')}">종류</td>
+          <td th:text="${prod.get('price')}">가격</td>
+          <td th:text="${prod.get('reg_day')}">등록일</td>
+          <td th:text="${prod.get('mod_day')}">수정일</td>
           <td>수정</td>
           <td>삭제</td>
         </tr>
@@ -151,16 +103,8 @@
   </div>
 
   <!-- 푸터 위치 -->
-  <footer class="bg-dark text-light mt-auto">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1 class="font-weight-light text-capitalize p-3">With Psc</h1>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
+  <th:block th:replace="/common/footer :: footerFragement"></th:block>
+  
 </body>
 </html>
 
