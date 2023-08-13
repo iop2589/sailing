@@ -18,10 +18,12 @@ spring:
 --- # Configuration Postgresql
 spring: 
   datasource:
-    url: jdbc:postgresql://pschome.iptime.org:1033
-    username: 92_psc
-    password: qkqn1221!!
+    url: jdbc:postgresql://pschome.iptime.org:1033/boot
+    username: iop2589
+    password: qkqn1221
 
-# Configuration mybatis
-# mybatis.mapper-locations=classpath:sqlmap/**/*.xml
-# mybatis.configuration.map-underscore-to-camel-case=true
+--- # Configuration mybatis
+mybatis:
+  mapper-locations: classpath:sqlmap/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
