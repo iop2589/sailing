@@ -23,11 +23,61 @@ public class MenuService {
     log.info("============ Menu Service, 생성자 =================");
   }
 
+  /***
+   * 메뉴 리스트 조회
+   * @return
+   */
   public List<Map<String, Object>> getMenu () {
     List<Map<String, Object>> result = menuDao.getMenu();
 
     log.info(result.toString());
 
+    return result;
+  }
+
+  /***
+   * 메뉴 신규 추가
+   * @param name 메뉴명
+   * @param kind 메뉴종류
+   * @param price 메뉴가격
+   * @return
+   */
+  public int doMenuInsert(String name, String kind, int price) {
+    int result = menuDao.doMenuInsert(name, kind, price);
+    return result;
+  }
+
+  /***
+   * 메뉴 삭제 
+   * @param no 메뉴번호
+   * @return
+   */
+  public int doMenuDelete(int no) {
+    int result = menuDao.doMenuDelete(no);
+    return result;
+  }
+
+  /***
+   * 메뉴 하나 조회 (수정 시)
+   * @param no 메뉴번호
+   * @return
+   */
+  public Map<String, Object> getMenuOne(int no) {
+    Map<String, Object> resultMap = new HashMap<>();
+    resultMap = menuDao.getMenuOne(no);
+    return resultMap;
+  }
+
+  /***
+   * 메뉴 정보 수정
+   * @param no 메뉴번호
+   * @param name 메뉴명
+   * @param kind 메뉴종류
+   * @param price 메뉴가격
+   * @return
+   */
+  public int doMenuUpdate(int no, String name, String kind, int price) {
+    int result = menuDao.doMenuUpdate(no, name, kind, price);
     return result;
   }
 }

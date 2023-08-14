@@ -18,7 +18,7 @@ spring:
 --- # Configuration Postgresql
 spring: 
   datasource:
-    url: jdbc:postgresql://pschome.iptime.org:1033/boot
+    url: jdbc:postgresql://pschome.iptime.org:1034/boot
     username: iop2589
     password: qkqn1221
 

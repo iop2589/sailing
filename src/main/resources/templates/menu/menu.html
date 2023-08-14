@@ -57,7 +57,7 @@
               <button type="submit" class="btn btn-secondary btn-sm" id="buttonSearch">조회</button>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-secondary btn-sm" id="buttonRegister">등록</button>
+              <button type="submit" class="btn btn-secondary btn-sm" id="buttonRegister"><a class="text-light" href="/menu/menu_insert">등록</a></button>
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-secondary btn-sm" id="buttonDelete">삭제</button>
@@ -95,8 +95,8 @@
           <td th:text="${prod.get('price')}">가격</td>
           <td th:text="${prod.get('reg_day')}">등록일</td>
           <td th:text="${prod.get('mod_day')}">수정일</td>
-          <td>수정</td>
-          <td>삭제</td>
+          <td><a th:href="@{/menu/menu_update(no=${prod.get('no')})}" class="text-light">수정</a></td>
+          <td><a th:href="@{/menu/menu_delete(no=${prod.get('no')})}" class="text-light">삭제</a></td>
         </tr>
       </tbody>
     </table>

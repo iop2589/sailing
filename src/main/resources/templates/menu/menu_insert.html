@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Coffee Menu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <script src="../js/bootstrap.js"></script>
+
+</head>
+<body class="bg-dark">
+
+<div class="container bg-dark text-light">
+  <!-- 헤더 위치 -->
+  <th:block th:replace="/common/header :: headerFragement"></th:block>
+
+  <div class="container" id="main">
+    <p class="h1">[ Coffee menu Insert <span style="font-size:30px;">&#9749;</span> ]</p>
+    <form class="container" name="fm_menu" autocomplete="on" action="/menu/menu_insert" method="post">
+      <div class="input-group">
+        <div class="input-group-text">
+          <label for="inputMenu" class="col-form-label">메뉴명</label>
+          <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenu" name="coffeename">
+        </div>
+        <div class="input-group-text">
+          <label for="inputKind" class="col-form-label">종류</label>
+          <select id="inputKind" class="form-select form-select-sm" name="kind">
+            <option selected value="커피">커피</option>
+            <option value="에이드">에이드</option>
+            <option value="스무디">스무디</option>
+          </select>
+        </div>
+        <div class="input-group-text">
+          <label for="inputPrice" class="col-form-label">가격</label>
+          <input type="number" class="form-control form-control-sm" placeholder="가격" aria-label="가격" id="inputPrice" name="price">
+        </div>
+        <div class="input-group-text">
+          <button type="submit" class="btn btn-secondary btn-sm" id="buttonRegister">메뉴 등록</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- 푸터 위치 -->
+  <th:block th:replace="/common/footer :: footerFragement"></th:block>
+  
+</body>
+</html>
+
+

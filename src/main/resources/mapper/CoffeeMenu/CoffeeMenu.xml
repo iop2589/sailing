@@ -5,4 +5,42 @@
     select no, name, kind, price, reg_day, mod_day
     from coffee;
   </select>
+
+  <insert id="doMenuInsert">
+    INSERT INTO Coffee 
+    (
+      name, 
+      kind, 
+      price, 
+      reg_day, 
+      mod_day
+    )
+    VALUES 
+    (
+      #{name},
+      #{kind},
+      #{price},
+      now(),
+      now()
+    )
+  </insert>
+
+  <delete id="doMenuDelete">
+    DELETE FROM Coffee WHERE no = #{no}
+  </delete>
+
+  <select id='getMenuOne' resultType='map'>
+    select no, name, kind, price, reg_day, mod_day
+    from coffee
+    where no = #{no};
+  </select>
+
+  <update id="doMenuUpdate">
+    UPDATE Coffee
+    SET name = #{name},
+        kind = #{kind},
+        price = #{price},
+        mod_day = now()
+    WHERE no = #{no};
+  </update>
 </mapper>
