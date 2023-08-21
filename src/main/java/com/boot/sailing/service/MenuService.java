@@ -80,4 +80,15 @@ public class MenuService {
     int result = menuDao.doMenuUpdate(no, name, kind, price);
     return result;
   }
+
+  public List<Map<String, Object>> getMenu(String startDate, String endDate, String name, String kind) {
+    List<Map<String, Object>> list = menuDao.getMenuType(startDate, endDate, name, kind);
+    return list;
+  }
+
+  public int doMenuPriceUpdate(Integer no, Integer price) {
+    int result = menuDao.doMenuPriceUpdate(no, price);
+    int resultLog = menuDao.doMenuPriceInsertLog(no, price);
+    return result;
+  }
 }

@@ -22,90 +22,111 @@
       <p class="h1">[ Coffee menu Management <span style="font-size:30px;">&#9749;</span> ]</p>
       <p class="h3">[ 검색조건 ]</p>
       <div class="container">
-        <form class="container" name="fm_menu" autocomplete="on">
+        <form class="container" name="fm_menu" autocomplete="on" action="/menu/menu_search" method="post">
           <div class="row">
             <div class="col-auto">
               <label for="inputStartDate" class="col-form-label">시작기간</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control form-control-sm" placeholder="시작일자" aria-label="시작일자" id="inputStartDate">
+              <input type="date" class="form-control form-control-sm" placeholder="시작일자" aria-label="시작일자" id="inputStartDate" name="start_date">
             </div>
             <div class="col-auto">
               <label for="inputEndDate" class="col-form-label">종료기간</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control form-control-sm" placeholder="종료일자" aria-label="종료일자" id="inputEndDate">
+              <input type="date" class="form-control form-control-sm" placeholder="종료일자" aria-label="종료일자" id="inputEndDate" name="end_date">
             </div>
             <div class="col-auto">
               <label for="inputMenu" class="col-form-label">메뉴명</label>
             </div>
             <div class="col-auto">
-              <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenu">
+              <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenu" name="menu_name">
             </div>
             <div class="col-auto">
               <label for="inputKind" class="col-form-label">종류</label>
             </div>
             <div class="col-auto">
-              <select id="inputKind" class="form-select form-select-sm">
+              <select id="inputKind" class="form-select form-select-sm" name="kind">
                 <option selected value="ALL">전체</option>
-                <option value="1.커피">1.커피</option>
-                <option value="2.에이드">2.에이드</option>
-                <option value="3.스무디">3.스무디</option>
+                <option value="커피">1.커피</option>
+                <option value="에이드">2.에이드</option>
+                <option value="스무디">3.스무디</option>
               </select>
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-secondary btn-sm" id="buttonSearch">조회</button>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-secondary btn-sm" id="buttonRegister"><a class="text-light" href="/menu/menu_insert">등록</a></button>
+              <button class="btn btn-secondary btn-sm" id="buttonRegister"><a class="text-light" href="/menu/menu_insert">등록</a></button>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-secondary btn-sm" id="buttonDelete">삭제</button>
+              <button class="btn btn-secondary btn-sm" id="buttonUpdate" onclick="onModify()">가격수정</button>
             </div>
           </div>
-            <!-- <input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
-            <button class="btn btn-secondary">등록</button>
-            <button class="btn btn-secondary">삭제</button> -->
         </form>
       </div>
     </div>
+    <form class="container" name="fm_table" autocomplete="on" action="/menu/update_price" method="post">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Chk</th>
+            <th scope="col">커피No</th>
+            <th scope="col">메뉴명</th>
+            <th scope="col">종류</th>
+            <th scope="col">가격</th>
+            <th scope="col">등록일</th>
+            <th scope="col">수정일</th>
+            <th scope="col">수정</th>
+            <th scope="col">삭제</th>
+          </tr>
+        </thead>
 
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Chk</th>
-          <th scope="col">커피No</th>
-          <th scope="col">메뉴명</th>
-          <th scope="col">종류</th>
-          <th scope="col">가격</th>
-          <th scope="col">등록일</th>
-          <th scope="col">수정일</th>
-          <th scope="col">수정</th>
-          <th scope="col">삭제</th>
-        </tr>
-      </thead>
-
-      <tbody id="t_body">
-      <!--- 데이타 출력 부분 -->
-        <tr th:each="prod : ${list}">
-          <th scope="row">Chk</th>
-          <td th:text="${prod.get('no')}">커피No</td>
-          <td th:text="${prod.get('name')}">메뉴명</td>
-          <td th:text="${prod.get('kind')}">종류</td>
-          <td th:text="${prod.get('price')}">가격</td>
-          <td th:text="${prod.get('reg_day')}">등록일</td>
-          <td th:text="${prod.get('mod_day')}">수정일</td>
-          <td><a th:href="@{/menu/menu_update(no=${prod.get('no')})}" class="text-light">수정</a></td>
-          <td><a th:href="@{/menu/menu_delete(no=${prod.get('no')})}" class="text-light">삭제</a></td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody id="t_body">
+        <!--- 데이타 출력 부분 -->
+          <tr th:each="prod : ${list}">
+            <th scope="row"><input class="form-check-input" type="checkbox" id="menu_check" name="menu_check" th:value="${prod.get('no')}"></th>
+            <td th:text="${prod.get('no')}">커피No</td>
+            <td th:text="${prod.get('name')}">메뉴명</td>
+            <td th:text="${prod.get('kind')}">종류</td>
+            <td th:text="${prod.get('price')}">가격</td>
+            <td th:text="${prod.get('reg_day')}">등록일</td>
+            <td th:text="${prod.get('mod_day')}">수정일</td>
+            <td><a th:href="@{/menu/menu_update(no=${prod.get('no')})}" class="text-light">수정</a></td>
+            <td><a th:href="@{/menu/menu_delete(no=${prod.get('no')})}" class="text-light">삭제</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="hidden" name="hidden_price" />
+    </form>
   </div>
 
   <!-- 푸터 위치 -->
   <th:block th:replace="/common/footer :: footerFragement"></th:block>
   
 </body>
+<script>
+  const now = new Date();
+  const time = new Date(now.setDate(now.getDate() - 200));
+  document.getElementById("inputStartDate").value = time.toISOString().slice(0, 10);
+  document.getElementById("inputEndDate").value = new Date().toISOString().slice(0, 10);
+
+  function onModify () {
+    event.preventDefault();
+    let _price = prompt("가격을 입력하세요.");
+
+    if (_price == undefined) {
+      return;
+    } else if (_price == "") {
+      alert("가격을 입력하세요.");
+      onModify();
+    } else {
+      let _frm = document.fm_table;
+      _frm.hidden_price.value = _price;
+      _frm.submit();
+    }
+  }
+</script>
 </html>
 
 

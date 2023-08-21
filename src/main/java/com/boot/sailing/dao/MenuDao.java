@@ -46,4 +46,10 @@ public interface MenuDao {
    * @return
    */
   int doMenuUpdate(@Param("no") int no, @Param("name") String name, @Param("kind") String kind, @Param("price") int price);
+
+  List<Map<String, Object>> getMenuType(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("name") String name, @Param("kind") String kind);
+
+  int doMenuPriceUpdate(@Param("no") Integer no, @Param("price") Integer price);
+
+  int doMenuPriceInsertLog(@Param("no") Integer no, @Param("price") Integer price);
 }

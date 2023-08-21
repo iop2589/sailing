@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.sailing.dao.MenuDao">
   <select id='getMenu' resultType='map'>
-    select no, name, kind, price, reg_day, mod_day
-    from coffee;
+    SELECT no, name, kind, price, reg_day, mod_day
+    FROM coffee;
   </select>
 
   <insert id="doMenuInsert">
@@ -43,4 +43,29 @@
         mod_day = now()
     WHERE no = #{no};
   </update>
+
+  <select id="getMenuType" resultType='map'>
+    SELECT no, name, kind, price, reg_day, mod_day
+    FROM coffee
+    WHERE 1=1
+    AND reg_day BETWEEN CAST(#{startDate} AS DATE) AND CAST(#{endDate} AS DATE) + 1
+    <if test='name != "ALL" and name != ""'>
+      AND name like CONCAT(#{name}, '%')
+    </if>
+    <if test='kind != "ALL"'>
+      AND kind = #{kind}
+    </if>
+    ;
+  </select>
+
+  <update id='doMenuPriceUpdate'>
+    UPDATE Coffee 
+    SET price = #{price}
+    WHERE no = #{no};
+  </update>
+
+  <insert id='doMenuPriceInsertLog'>
+    INSERT INTO PriceLog (no, price)
+    VALUES (#{no}, #{price});
+  </insert>
 </mapper>
