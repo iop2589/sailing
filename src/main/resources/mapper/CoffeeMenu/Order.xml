@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.sailing.dao.OrderDao">
+  <select id='getOrderAll' resultType='com.boot.sailing.vo.Order'>
+    SELECT  A.no AS orderNo,
+            A.coffee_no AS coffeeNo,
+            A.menu_name AS menuName,
+            A.price AS price,
+            A.cust_id  AS custId,
+            A.cust_name AS custName,
+            A.reg_day AS orderDate
+    FROM    orders AS A 
+  </select>
+
+  <select id='getOrder' resultType='com.boot.sailing.vo.Order'>
+    SELECT  A.no AS orderNo,
+            A.coffee_no AS coffeeNo,
+            A.menu_name AS menuName,
+            A.price AS price,
+            A.cust_id  AS custId,
+            A.cust_name AS custName,
+            A.reg_day AS orderDate
+    FROM    orders AS A 
+    WHERE   1=1
+    AND     A.reg_day BETWEEN CAST(#{startDate} AS DATE) AND CAST(#{endDate} AS DATE) + 1
+    <if test='menuName != ""'>
+      AND   A.menu_name LIKE CONCAT(#{menuName}, '%')
+    </if>
+    <if test='custName != ""'>
+      AND   A.cust_name LIKE CONCAT(#{custName}, '%')
+    </if>
+  </select>
+</mapper>

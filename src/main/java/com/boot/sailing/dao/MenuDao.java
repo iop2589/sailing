@@ -6,13 +6,15 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.boot.sailing.vo.CoffeeMenu;
+
 @Mapper
 public interface MenuDao {
   /***
    * 메뉴 리스트 조회
    * @return
    */
-  List<Map<String, Object>> getMenu();
+  List<CoffeeMenu> getMenu();
 
   /***
    * 메뉴 신규 추가
@@ -21,21 +23,21 @@ public interface MenuDao {
    * @param price 메뉴가격
    * @return
    */
-  int doMenuInsert(@Param("name") String name, @Param("kind") String kind, @Param("price") int price);
+  int doMenuInsert(CoffeeMenu coffeeMenu);
 
   /***
    * 메뉴 삭제
    * @param no 메뉴번호
    * @return
    */
-  int doMenuDelete(@Param("no") int no);
+  int doMenuDelete(CoffeeMenu coffeeMenu);
 
   /***
    * 메뉴 하나 정보 조회 (수정 시)
    * @param no 메뉴번호
    * @return
    */
-  Map<String, Object> getMenuOne(@Param("no")int no);
+  CoffeeMenu getMenuOne(CoffeeMenu coffeeMenu);
 
   /***
    * 메뉴 정보 수정
@@ -45,7 +47,7 @@ public interface MenuDao {
    * @param price 메뉴가격
    * @return
    */
-  int doMenuUpdate(@Param("no") int no, @Param("name") String name, @Param("kind") String kind, @Param("price") int price);
+  int doMenuUpdate(CoffeeMenu coffeeMenu);
 
   /***
    * 메뉴 조회 (with 조건)
@@ -55,7 +57,7 @@ public interface MenuDao {
    * @param kind 메뉴종류
    * @return
    */
-  List<Map<String, Object>> getMenuType(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("name") String name, @Param("kind") String kind);
+  List<CoffeeMenu> getMenuType(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("name") String name, @Param("kind") String kind);
 
   /***
    * 메뉴 가격 변경

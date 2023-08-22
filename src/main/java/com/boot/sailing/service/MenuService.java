@@ -1,15 +1,11 @@
 package com.boot.sailing.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.sailing.dao.MenuDao;
-
+import com.boot.sailing.vo.CoffeeMenu;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -27,8 +23,8 @@ public class MenuService {
    * 메뉴 리스트 조회
    * @return
    */
-  public List<Map<String, Object>> getMenu () {
-    List<Map<String, Object>> result = menuDao.getMenu();
+  public List<CoffeeMenu> getMenu () {
+    List<CoffeeMenu> result = menuDao.getMenu();
 
     log.info(result.toString());
 
@@ -42,8 +38,8 @@ public class MenuService {
    * @param price 메뉴가격
    * @return
    */
-  public int doMenuInsert(String name, String kind, int price) {
-    int result = menuDao.doMenuInsert(name, kind, price);
+  public int doMenuInsert(CoffeeMenu coffeeMenu) {
+    int result = menuDao.doMenuInsert(coffeeMenu);
     return result;
   }
 
@@ -52,8 +48,8 @@ public class MenuService {
    * @param no 메뉴번호
    * @return
    */
-  public int doMenuDelete(int no) {
-    int result = menuDao.doMenuDelete(no);
+  public int doMenuDelete(CoffeeMenu coffeeMenu) {
+    int result = menuDao.doMenuDelete(coffeeMenu);
     return result;
   }
 
@@ -62,10 +58,9 @@ public class MenuService {
    * @param no 메뉴번호
    * @return
    */
-  public Map<String, Object> getMenuOne(int no) {
-    Map<String, Object> resultMap = new HashMap<>();
-    resultMap = menuDao.getMenuOne(no);
-    return resultMap;
+  public CoffeeMenu getMenuOne(CoffeeMenu coffeeMenu) {
+    CoffeeMenu coffeeMenuResult = menuDao.getMenuOne(coffeeMenu);
+    return coffeeMenuResult;
   }
 
   /***
@@ -76,16 +71,30 @@ public class MenuService {
    * @param price 메뉴가격
    * @return
    */
-  public int doMenuUpdate(int no, String name, String kind, int price) {
-    int result = menuDao.doMenuUpdate(no, name, kind, price);
+  public int doMenuUpdate(CoffeeMenu coffeeMenu) {
+    int result = menuDao.doMenuUpdate(coffeeMenu);
     return result;
   }
 
-  public List<Map<String, Object>> getMenu(String startDate, String endDate, String name, String kind) {
-    List<Map<String, Object>> list = menuDao.getMenuType(startDate, endDate, name, kind);
+  /***
+   * 메뉴 검색
+   * @param startDate 시작일자
+   * @param endDate 종료일자
+   * @param name 메뉴명칭
+   * @param kind 메뉴종류
+   * @return
+   */
+  public List<CoffeeMenu> getMenu(String startDate, String endDate, String name, String kind) {
+    List<CoffeeMenu> list = menuDao.getMenuType(startDate, endDate, name, kind);
     return list;
   }
 
+  /***
+   * 메뉴 가격 일괄 변경
+   * @param chkList 메뉴번호 리스트
+   * @param price 변경 가격
+   * @return
+   */
   public int doMenuPriceUpdate(List<Integer> chkList, Integer price) {
     int result = menuDao.doMenuPriceUpdate(chkList, price);
     int resultLog = menuDao.doMenuPriceInsertLog(chkList, price);

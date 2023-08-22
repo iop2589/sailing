@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.sailing.service.MenuService;
+import com.boot.sailing.vo.CoffeeMenu;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -27,7 +30,7 @@ public class MenuController {
   @GetMapping("/menu")
   public String doMenu (Model model) {
 
-    List<Map<String, Object>> list = menuService.getMenu();
+    List<CoffeeMenu> list = menuService.getMenu();
     model.addAttribute("list", list);
     return "/menu/menu";
 
@@ -39,38 +42,33 @@ public class MenuController {
   }
 
   @PostMapping("/menu_insert")
-  public String doMenuInsert (@RequestParam("coffeename") String name, 
-                           @RequestParam("kind") String kind,
-                           @RequestParam("price") int price) {
+  public String doMenuInsert (@ModelAttribute CoffeeMenu coffeeMenu) {
 
-    int result = menuService.doMenuInsert(name, kind, price);
+    int result = menuService.doMenuInsert(coffeeMenu);
 
     return "redirect:/menu/menu";
   }
 
   @GetMapping("/menu_delete")
-  public String doMenuDelete (@RequestParam("no") int no) {
+  public String doMenuDelete (@ModelAttribute CoffeeMenu coffeeMenu) {
 
-    int result = menuService.doMenuDelete(no);
+    int result = menuService.doMenuDelete(coffeeMenu);
     return "redirect:/menu/menu";
 
   }
 
   @GetMapping("/menu_update")
-  public String moveMenuUpdate (Model model, @RequestParam("no") int no) {
+  public String moveMenuUpdate (Model model, @ModelAttribute CoffeeMenu coffeeMenu) {
 
-    Map<String, Object> map = menuService.getMenuOne(no);
-    model.addAttribute("map", map);
+    CoffeeMenu coffeeMenuResult = menuService.getMenuOne(coffeeMenu);
+    model.addAttribute("coffeeMenu", coffeeMenuResult);
     return "/menu/menu_update";
 
   }
 
   @PostMapping("/menu_update")
-  public String doMenuUpdate (@RequestParam("no") int no, 
-                              @RequestParam("coffeename") String name, 
-                              @RequestParam("kind") String kind, 
-                              @RequestParam("price") int price) {
-    int result = menuService.doMenuUpdate(no, name, kind, price);
+  public String doMenuUpdate (@ModelAttribute CoffeeMenu coffeeMenu) {
+    int result = menuService.doMenuUpdate(coffeeMenu);
     return "redirect:/menu/menu";
   }
 
@@ -80,7 +78,7 @@ public class MenuController {
                         @RequestParam("end_date") String endDate, 
                         @RequestParam(value="menu_name", defaultValue="ALL") String name, 
                         @RequestParam("kind") String kind) {
-    List<Map<String, Object>> list = menuService.getMenu(startDate, endDate, name, kind);
+    List<CoffeeMenu> list = menuService.getMenu(startDate, endDate, name, kind);
     
     model.addAttribute("list", list);
 

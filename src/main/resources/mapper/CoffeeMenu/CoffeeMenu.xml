@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.sailing.dao.MenuDao">
-  <select id='getMenu' resultType='map'>
+  <select id='getMenu' resultType='com.boot.sailing.vo.CoffeeMenu'>
     SELECT no, name, kind, price, reg_day, mod_day
     FROM coffee;
   </select>
 
-  <insert id="doMenuInsert">
+  <insert id="doMenuInsert" parameterType='com.boot.sailing.vo.CoffeeMenu'>
     INSERT INTO Coffee 
     (
       name, 
@@ -25,17 +25,17 @@
     )
   </insert>
 
-  <delete id="doMenuDelete">
+  <delete id="doMenuDelete" parameterType='com.boot.sailing.vo.CoffeeMenu'>
     DELETE FROM Coffee WHERE no = #{no}
   </delete>
 
-  <select id='getMenuOne' resultType='map'>
+  <select id='getMenuOne' resultType='com.boot.sailing.vo.CoffeeMenu' parameterType='com.boot.sailing.vo.CoffeeMenu'>
     select no, name, kind, price, reg_day, mod_day
     from coffee
     where no = #{no};
   </select>
 
-  <update id="doMenuUpdate">
+  <update id="doMenuUpdate" parameterType='com.boot.sailing.vo.CoffeeMenu'>
     UPDATE Coffee
     SET name = #{name},
         kind = #{kind},
@@ -44,7 +44,7 @@
     WHERE no = #{no};
   </update>
 
-  <select id="getMenuType" resultType='map'>
+  <select id="getMenuType" resultType='com.boot.sailing.vo.CoffeeMenu'>
     SELECT no, name, kind, price, reg_day, mod_day
     FROM coffee
     WHERE 1=1

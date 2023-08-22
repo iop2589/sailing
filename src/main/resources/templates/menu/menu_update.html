@@ -22,24 +22,24 @@
       <div class="input-group">
         <div class="input-group-text">
           <label for="inputMenu" class="col-form-label">메뉴명</label>
-          <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenu" name="coffeename" th:value="${map.get('name')}">
+          <input type="text" class="form-control form-control-sm" placeholder="메뉴명" aria-label="메뉴명" id="inputMenu" name="name" th:value="${coffeeMenu.getName()}">
         </div>
         <div class="input-group-text">
           <label for="inputKind" class="col-form-label">종류</label>
           <select id="inputKind" class="form-select form-select-sm" name="kind">
-            <option th:selected = "${map.get('kind') == '커피'}" value="커피">커피</option>
-            <option th:selected = "${map.get('kind') == '에이드'}" value="에이드">에이드</option>
-            <option th:selected = "${map.get('kind') == '스무디'}" value="스무디">스무디</option>
+            <option th:selected = "${coffeeMenu.getKind() == '커피'}" value="커피">커피</option>
+            <option th:selected = "${coffeeMenu.getKind() == '에이드'}" value="에이드">에이드</option>
+            <option th:selected = "${coffeeMenu.getKind() == '스무디'}" value="스무디">스무디</option>
           </select>
         </div>
         <div class="input-group-text">
           <label for="inputPrice" class="col-form-label">가격</label>
-          <input type="number" class="form-control form-control-sm" placeholder="가격" aria-label="가격" id="inputPrice" name="price" th:value="${map.get('price')}">
+          <input type="number" class="form-control form-control-sm" placeholder="가격" aria-label="가격" id="inputPrice" name="price" th:value="${coffeeMenu.getPrice()}">
         </div>
         <div class="input-group-text">
           <button type="submit" class="btn btn-secondary btn-sm" id="buttonRegister">메뉴 등록</button>
         </div>
-        <input type="hidden" name="no" th:value="${map.get('no')}">
+        <input type="hidden" name="no" th:value="${coffeeMenu.getNo()}">
       </div>
     </form>
   </div>

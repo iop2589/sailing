@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.sailing.dao.MemberDao">
+  <select id='getMemberAll' resultType='com.boot.sailing.vo.Member'>
+    select  no,
+            cust_id as custId,
+            name as name,
+            email as email,
+            role as role,
+            reg_day as regDay
+    from    customer
+  </select>
+
+  <select id='getMember' resultType='com.boot.sailing.vo.Member'>
+    select  no,
+            cust_id as custId,
+            name as name,
+            email as email,
+            role as role,
+            reg_day as regDay
+    from    customer
+    WHERE   1=1
+    AND     reg_day BETWEEN CAST(#{startDate} AS DATE) AND CAST(#{endDate} AS DATE) + 1
+    <if test='custName != ""'>
+      AND   name LIKE CONCAT(#{custName}, '%')
+    </if>
+  </select>
+</mapper>

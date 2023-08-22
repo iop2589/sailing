@@ -85,15 +85,15 @@
         <tbody id="t_body">
         <!--- 데이타 출력 부분 -->
           <tr th:each="prod : ${list}">
-            <th scope="row"><input class="form-check-input" type="checkbox" id="menu_check" name="menu_check" th:value="${prod.get('no')}"></th>
-            <td th:text="${prod.get('no')}">커피No</td>
-            <td th:text="${prod.get('name')}">메뉴명</td>
-            <td th:text="${prod.get('kind')}">종류</td>
-            <td th:text="${prod.get('price')}">가격</td>
-            <td th:text="${prod.get('reg_day')}">등록일</td>
-            <td th:text="${prod.get('mod_day')}">수정일</td>
-            <td><a th:href="@{/menu/menu_update(no=${prod.get('no')})}" class="text-light">수정</a></td>
-            <td><a th:href="@{/menu/menu_delete(no=${prod.get('no')})}" class="text-light">삭제</a></td>
+            <th scope="row"><input class="form-check-input" type="checkbox" id="menu_check" name="menu_check" th:value="${prod.getNo()}"></th>
+            <td th:text="${prod.getNo()}">커피No</td>
+            <td th:text="${prod.getName()}">메뉴명</td>
+            <td th:text="${prod.getKind()}">종류</td>
+            <td th:text="${#numbers.formatInteger(prod.getPrice(), 0, 'COMMA')}">가격</td>
+            <td th:text="${prod.getRegDay()}">등록일</td>
+            <td th:text="${prod.getModDay()}">수정일</td>
+            <td><a th:href="@{/menu/menu_update(no=${prod.getNo()})}" class="text-light">수정</a></td>
+            <td><a th:href="@{/menu/menu_delete(no=${prod.getNo()})}" class="text-light">삭제</a></td>
           </tr>
         </tbody>
       </table>
