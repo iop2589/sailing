@@ -86,9 +86,9 @@ public class MenuService {
     return list;
   }
 
-  public int doMenuPriceUpdate(Integer no, Integer price) {
-    int result = menuDao.doMenuPriceUpdate(no, price);
-    int resultLog = menuDao.doMenuPriceInsertLog(no, price);
+  public int doMenuPriceUpdate(List<Integer> chkList, Integer price) {
+    int result = menuDao.doMenuPriceUpdate(chkList, price);
+    int resultLog = menuDao.doMenuPriceInsertLog(chkList, price);
     return result;
   }
 }

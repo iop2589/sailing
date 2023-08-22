@@ -92,9 +92,7 @@ public class MenuController {
                                    @RequestParam("hidden_price") Integer price) {
     log.debug("************************** price ::: " + price);
     if (chkList != null) {
-      for (Integer no : chkList) {
-        int result = menuService.doMenuPriceUpdate (no, price);
-      }
+      int result = menuService.doMenuPriceUpdate (chkList, price);
     }
 
     return "redirect:/menu/menu";

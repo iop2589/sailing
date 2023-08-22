@@ -61,11 +61,17 @@
   <update id='doMenuPriceUpdate'>
     UPDATE Coffee 
     SET price = #{price}
-    WHERE no = #{no};
+    <where>
+      <foreach item='no' index='index' collection='chkList' open='no in (' separator=',' close=')' nullable='true'>
+        #{no}
+      </foreach>
+    </where>
   </update>
 
   <insert id='doMenuPriceInsertLog'>
     INSERT INTO PriceLog (no, price)
-    VALUES (#{no}, #{price});
+    <foreach item='no' index='index' collection='chkList' separator=' UNION ALL '  nullable='true'>
+      SELECT #{no}, #{price} 
+    </foreach>
   </insert>
 </mapper>

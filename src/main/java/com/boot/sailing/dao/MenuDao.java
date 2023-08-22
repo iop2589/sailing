@@ -47,9 +47,29 @@ public interface MenuDao {
    */
   int doMenuUpdate(@Param("no") int no, @Param("name") String name, @Param("kind") String kind, @Param("price") int price);
 
+  /***
+   * 메뉴 조회 (with 조건)
+   * @param startDate 등록시작일자
+   * @param endDate 등록종료일자
+   * @param name 메뉴명칭
+   * @param kind 메뉴종류
+   * @return
+   */
   List<Map<String, Object>> getMenuType(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("name") String name, @Param("kind") String kind);
 
-  int doMenuPriceUpdate(@Param("no") Integer no, @Param("price") Integer price);
+  /***
+   * 메뉴 가격 변경
+   * @param chkList 메뉴번호 리스트
+   * @param price 변경가격
+   * @return
+   */
+  int doMenuPriceUpdate(@Param("chkList") List<Integer> chkList, @Param("price") Integer price);
 
-  int doMenuPriceInsertLog(@Param("no") Integer no, @Param("price") Integer price);
+  /***
+   * 메뉴 가격 변경 로그
+   * @param chkList 메뉴번호리스트
+   * @param price 변경가격
+   * @return
+   */
+  int doMenuPriceInsertLog(@Param("chkList") List<Integer> chkList, @Param("price") Integer price);
 }
