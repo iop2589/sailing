@@ -3,7 +3,9 @@ package com.boot.sailing.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.boot.sailing.common.MyCustomeException;
 import com.boot.sailing.dao.MenuDao;
 import com.boot.sailing.vo.CoffeeMenu;
 import lombok.extern.log4j.Log4j2;
@@ -94,10 +96,20 @@ public class MenuService {
    * @param chkList 메뉴번호 리스트
    * @param price 변경 가격
    * @return
+   * @throws MyCustomeException
    */
-  public int doMenuPriceUpdate(List<Integer> chkList, Integer price) {
+  @Transactional(rollbackFor = Exception.class)
+  public int doMenuPriceUpdate(List<Integer> chkList, Integer price) throws MyCustomeException {
     int result = menuDao.doMenuPriceUpdate(chkList, price);
+
+    try {
+      System.out.println(1/0);
+    } catch (Exception e) {
+      throw new MyCustomeException(e.getMessage(), this.getClass().toString());
+    }
+
     int resultLog = menuDao.doMenuPriceInsertLog(chkList, price);
+
     return result;
   }
 }

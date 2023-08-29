@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.sailing.common.MyCustomeException;
 import com.boot.sailing.service.MenuService;
 import com.boot.sailing.vo.CoffeeMenu;
 
@@ -67,7 +68,7 @@ public class MenuController {
   }
 
   @PostMapping("/menu_update")
-  public String doMenuUpdate (@ModelAttribute CoffeeMenu coffeeMenu) {
+  public String doMenuUpdate (@ModelAttribute CoffeeMenu coffeeMenu) throws MyCustomeException {
     int result = menuService.doMenuUpdate(coffeeMenu);
     return "redirect:/menu/menu";
   }
@@ -87,7 +88,7 @@ public class MenuController {
 
   @PostMapping("/update_price")
   public String doMenuPriceUpdate (@RequestParam("menu_check") List<Integer> chkList,
-                                   @RequestParam("hidden_price") Integer price) {
+                                   @RequestParam("hidden_price") Integer price) throws MyCustomeException {
     log.debug("************************** price ::: " + price);
     if (chkList != null) {
       int result = menuService.doMenuPriceUpdate (chkList, price);

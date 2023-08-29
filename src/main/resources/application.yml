@@ -21,6 +21,8 @@ spring:
     url: jdbc:postgresql://pschome.iptime.org:1034/boot
     username: iop2589
     password: qkqn1221
+    hikari:
+      maximum-pool-size: 20
 
 --- # Configuration mybatis
 mybatis:
