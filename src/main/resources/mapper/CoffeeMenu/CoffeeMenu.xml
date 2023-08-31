@@ -60,7 +60,8 @@
 
   <update id='doMenuPriceUpdate'>
     UPDATE Coffee 
-    SET price = #{price}
+    SET price = #{price},
+    mod_day = now()
     <where>
       <foreach item='no' index='index' collection='chkList' open='no in (' separator=',' close=')' nullable='true'>
         #{no}
@@ -73,5 +74,10 @@
     <foreach item='no' index='index' collection='chkList' separator=' UNION ALL '  nullable='true'>
       SELECT #{no}, #{price} 
     </foreach>
+  </insert>
+
+  <insert id='bootLog'>
+    INSERT INTO BootLog (error) 
+    VALUES (#{error})
   </insert>
 </mapper>

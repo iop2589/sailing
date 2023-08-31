@@ -1,8 +1,6 @@
 package com.boot.sailing.dao;
 
 import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -74,4 +72,10 @@ public interface MenuDao {
    * @return
    */
   int doMenuPriceInsertLog(@Param("chkList") List<Integer> chkList, @Param("price") Integer price);
+
+  /***
+   * Error Log
+   * @param string
+   */
+  void bootLog(@Param("error") String error);
 }

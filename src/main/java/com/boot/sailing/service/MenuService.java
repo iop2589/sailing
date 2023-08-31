@@ -3,8 +3,14 @@ package com.boot.sailing.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
+import com.boot.sailing.common.BootLog;
 import com.boot.sailing.common.MyCustomeException;
 import com.boot.sailing.dao.MenuDao;
 import com.boot.sailing.vo.CoffeeMenu;
@@ -16,6 +22,18 @@ public class MenuService {
 
   @Autowired
   MenuDao menuDao;
+
+  @Autowired
+  BootLog bootLog;
+
+  @Autowired
+  PlatformTransactionManager platformTransactionManager;
+
+  @Autowired
+  TransactionDefinition transactionDefinition;
+
+  @Autowired
+  TransactionTemplate transactionTemplate;
 
   public MenuService() {
     log.info("============ Menu Service, 생성자 =================");
@@ -98,17 +116,26 @@ public class MenuService {
    * @return
    * @throws MyCustomeException
    */
-  @Transactional(rollbackFor = Exception.class)
-  public int doMenuPriceUpdate(List<Integer> chkList, Integer price) throws MyCustomeException {
-    int result = menuDao.doMenuPriceUpdate(chkList, price);
+  //@Transactional(propagation = Propagation.REQUIRED)
+  public int doMenuPriceUpdate(List<Integer> chkList, Integer price) throws RuntimeException {
+    int result = 0;
+
+    TransactionStatus transactionStatus = platformTransactionManager.getTransaction(transactionDefinition);
 
     try {
-      System.out.println(1/0);
+      result = transactionTemplate.execute(status -> {
+        int resultUpdate = menuDao.doMenuPriceUpdate(chkList, price);
+        int resultLog = menuDao.doMenuPriceInsertLog(chkList, price);
+        return resultUpdate;
+      });
+      
+
+      //System.out.println(1/0);
     } catch (Exception e) {
       throw new MyCustomeException(e.getMessage(), this.getClass().toString());
+    } finally {
+      bootLog.bootLog(this.getClass().toString());
     }
-
-    int resultLog = menuDao.doMenuPriceInsertLog(chkList, price);
 
     return result;
   }
